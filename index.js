@@ -33,7 +33,7 @@ const rest = new REST({ version: '10' }).setToken(TOKEN);
       client.user.setActivity('chill with manish', { type: 3 }); // Type 3 is "Watching"
       
       // Set bot's about me with watermark
-      const watermark = "Made with ❤️ by Manish | Active Developer Badge Bot | Get your badge in 24 hours!";
+      const watermark = "صُــنــع بــواســطــة @9a22 | بـوت شــارة الــمــطــور الـنـشـط | احــصــل عــلــى شــارة الــمــطــور الــنــشــط عــلــى ديــســكــورد";
       
       // Function to ensure watermark stays
       const ensureWatermark = async () => {
@@ -87,71 +87,37 @@ const rest = new REST({ version: '10' }).setToken(TOKEN);
         fs.writeFileSync('./userTimers.json', JSON.stringify(userTimers, null, 2));
       }
 
-      const embed = new EmbedBuilder()
-        .setTitle('🚀 Active Developer Badge Timer')
-        .setDescription(`
-        **Congratulations!** Your 24-hour timer has been activated.
-        
-        ⏰ **Timer Ends:** ${timeLeft}
-        
-        Once the timer completes, click the button below to claim your **Active Developer Badge**!
-        `)
-        .addFields(
-          { 
-            name: '📋 Instructions', 
-            value: `
-            • Wait for the full 24 hours to pass
-            • Click the "Claim Badge" button below
-            • Complete the verification process
-            • Enjoy your new badge! 🎉
-            `, 
-            inline: false 
-          },
-          { 
-            name: '⚡ Quick Links', 
-            value: `
-            🔗 [Developer Portal](https://discord.com/developers/applications)
-            📚 [Our website](https://roxy-selfbot.vercel.app/)
-            💡 [Support Server](https://discord.gg/hZf4j8GzzK)
-            `, 
-            inline: true 
-          },
-          { 
-            name: '🎯 Badge Benefits', 
-            value: `
-            ✨ Exclusive profile badge
-            🎖️ Community status
-            🚀 flex maybe
-            `, 
-            inline: true 
-          }
-        )
-        .setColor('#00D4AA')
-        .setThumbnail('https://cdn.discordapp.com/attachments/1395245783808348331/1400354191624372375/0d02b202baf618dc122475bf70350fd9.png') 
-        .setFooter({ 
-          text: '🔥 Active Developer Badge bot | Made with ❤️ by Manish',
-          iconURL: 'https://cdn.discordapp.com/attachments/1332936607267033138/1400353273906593844/image_8.png' 
-        })
-        .setTimestamp()
-        .setImage('https://cdn.discordapp.com/attachments/1395245783808348331/1400351640028053556/20250731_102557.png');
+    const embed = new EmbedBuilder() // منسق الكود
+   .setAuthor({
+    name: "شــارة الــمــطــور الـنـشـط عــلــى ديـســكــورد",
+    iconURL: "https://cdn.discordapp.com/emojis/1040325165512396830.webp?size=64&quality=lossless",
+   })
+   .setTitle("🎉 تــم تــشــغــيــل الأمــر بــنــجــاح!")
+   .setColor("#34DB98")
+   .setDescription(
+    "🔗 **الــخــطــوة الأخــيــرة:**\n" +
+    "• اذهــب إلــى: https://discord.com/developers/active-developer\n" +
+    "• احــصــل عــلــى شــارتــك مــن هــنــاك\n\n" +
+    "⏱️ **مــلاحــظــة:** قــد يــســتــغــرق الــتــحــقــق حــتــى ٢٤ ســاعــة\n\n" +
+    "🌐 **ســيــرفــر الــصــانــع:**\n" +
+    "• https://discord.gg/mg0"
+   )
+   .setFooter({
+    text: "صُــنــع بــواســطــة @9a22",
+    iconURL: "https://cdn.discordapp.com/attachments/1354635316098764994/1402470997625671752/455a2d65ae98c00af4733bc2a34e323b.jpg?ex=68940866&is=6892b6e6&hm=caa901d948a2a3bb6cc1d090a59c59044492c50d279c55e3377d0cb30f8b73c9&",
+   });
+  
+  console.log();
+  slashSpinner.succeed(chalk.bold.green("🎉 Command executed successfully!"));
+  console.log();
+  console.log(chalk.bold.green("✅ All operations completed!"));
+  console.log(chalk.bold("🌐 Go to: ") + chalk.cyan.underline("https://discord.com/developers/active-developer"));
+  console.log(chalk.bold("🏆 And claim your badge!"));
+  console.log();
+  console.log(chalk.yellow("💡 Tip: ") + "Verification may take up to 24 hours");
+  console.log("═".repeat(60));
+  
+  await interaction.reply({ embeds: [embed] });
+ }
+});
 
-      const row = new ActionRowBuilder().addComponents(
-        new ButtonBuilder()
-          .setLabel('🏆 Claim Your Badge')
-          .setStyle(ButtonStyle.Link)
-          .setURL('https://discord.com/developers/active-developer')
-      );
-
-      await interaction.reply({ 
-        embeds: [embed], 
-        components: [row],
-        ephemeral: false 
-      });
-    });
-
-    client.login(TOKEN);
-
-  } catch (err) {
-    console.error(err);
-  }
-})();
