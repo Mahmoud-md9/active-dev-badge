@@ -87,7 +87,9 @@ const rest = new REST({ version: '10' }).setToken(TOKEN);
         fs.writeFileSync('./userTimers.json', JSON.stringify(userTimers, null, 2));
       }
 
-    const embed = new EmbedBuilder() // منسق الكود
+ 
+ if (interaction.commandName === "active-dev-badge") {
+  const embed = new EmbedBuilder() // منسق الكود
    .setAuthor({
     name: "شــارة الــمــطــور الـنـشـط عــلــى ديـســكــورد",
     iconURL: "https://cdn.discordapp.com/emojis/1040325165512396830.webp?size=64&quality=lossless",
@@ -106,18 +108,3 @@ const rest = new REST({ version: '10' }).setToken(TOKEN);
     text: "صُــنــع بــواســطــة @9a22",
     iconURL: "https://cdn.discordapp.com/attachments/1354635316098764994/1402470997625671752/455a2d65ae98c00af4733bc2a34e323b.jpg?ex=68940866&is=6892b6e6&hm=caa901d948a2a3bb6cc1d090a59c59044492c50d279c55e3377d0cb30f8b73c9&",
    });
-  
-  console.log();
-  slashSpinner.succeed(chalk.bold.green("🎉 Command executed successfully!"));
-  console.log();
-  console.log(chalk.bold.green("✅ All operations completed!"));
-  console.log(chalk.bold("🌐 Go to: ") + chalk.cyan.underline("https://discord.com/developers/active-developer"));
-  console.log(chalk.bold("🏆 And claim your badge!"));
-  console.log();
-  console.log(chalk.yellow("💡 Tip: ") + "Verification may take up to 24 hours");
-  console.log("═".repeat(60));
-  
-  await interaction.reply({ embeds: [embed] });
- }
-});
-
